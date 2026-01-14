@@ -46,7 +46,7 @@ model ReferralRegistered {
   referralCode String
   referralCodeHolder User @relation(fields: [referralCode], references: [referralCode])
 
-  doneByIdentifier String
+  doneByIdentifier String 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
