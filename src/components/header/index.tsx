@@ -12,9 +12,14 @@ export default function Header() {
       <h2 className="font-semibold">Vedica Referral Program</h2>
       {pathname === "/" ? (
         <>
-          <Link href={"/login"}>
-            <Button>Login</Button>
-          </Link>
+          <div className="flex gap-2">
+            <Link href={"/login"}>
+              <Button>Login</Button>
+            </Link>
+            <Link href={"/register"}>
+              <Button variant={"outline"}>Register</Button>
+            </Link>
+          </div>
         </>
       ) : (
         <></>

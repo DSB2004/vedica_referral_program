@@ -6,6 +6,7 @@ import Published from "@/components/post/published";
 export default function page() {
   return (
     <>
+      <h2 className="text-2xl font-semibold">Post</h2>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Search></Search>
