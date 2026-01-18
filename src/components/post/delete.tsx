@@ -16,6 +16,7 @@ import { updatePost } from "@/actions/post/update.action";
 import { Trash2 } from "lucide-react";
 import { Post } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
+import { deletePost } from "@/actions/post/delete.action";
 
 type Props = {
   postId: string;
@@ -28,10 +29,7 @@ export function PostDeleteDialog({ id }: Post) {
   const handleAction = async () => {
     setLoading(true);
     try {
-      await updatePost({
-        postId: id,
-        ...{ isDeleted: true },
-      });
+      await deletePost({ postId: id });
 
       toast.success("Post deleted successfully");
       queryClient.invalidateQueries({

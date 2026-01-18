@@ -1,4 +1,5 @@
 import { UserStore } from "@/store/user.store";
+import { FeedStore } from "@/store/feed.store";
 export default function HomeLayout({
   children,
 }: Readonly<{
@@ -6,9 +7,9 @@ export default function HomeLayout({
 }>) {
   return (
     <>
-      <body>
-        <main className="relative">{children}</main>
-      </body>
+      <UserStore>
+        <FeedStore>{children}</FeedStore>
+      </UserStore>
     </>
   );
 }

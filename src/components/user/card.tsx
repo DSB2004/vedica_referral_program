@@ -5,8 +5,6 @@ import { Post } from "@/types";
 import { cn } from "@/lib/utils";
 import { Share2, Copy, Linkedin, Facebook, Instagram } from "lucide-react";
 
-
-
 function ShareMenu({ url }: { url: string }) {
   const [open, setOpen] = useState(false);
 
@@ -51,15 +49,15 @@ function ShareMenu({ url }: { url: string }) {
             <Linkedin size={14} /> LinkedIn
           </a>
 
-    
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 px-3 py-2 hover:bg-muted text-sm"
+          <button
+            onClick={async () => {
+              await navigator.clipboard.writeText(url);
+              window.open("https://www.instagram.com/", "_blank");
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 hover:bg-muted text-sm"
           >
             <Instagram size={14} /> Instagram
-          </a>
+          </button>
 
           <button
             onClick={copyToClipboard}
@@ -72,8 +70,6 @@ function ShareMenu({ url }: { url: string }) {
     </div>
   );
 }
-
-
 
 export default function FeedPostCard({ post }: { post: Post }) {
   const { assets } = post;
@@ -93,18 +89,15 @@ export default function FeedPostCard({ post }: { post: Post }) {
         setActiveIndex((prev) => Math.max(prev - 1, 0));
       }
     },
-    [assets.length]
+    [assets.length],
   );
 
   return (
     <article className="rounded-xl mb-10 relative border bg-background overflow-hidden group">
- 
       <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-25 transition z-20" />
-
 
       {post.sharableLink && <ShareMenu url={post.sharableLink} />}
 
-  
       {assets.length > 0 && (
         <div
           tabIndex={0}
@@ -141,7 +134,6 @@ export default function FeedPostCard({ post }: { post: Post }) {
             ))}
           </div>
 
-   
           {assets.length > 1 && (
             <div className="absolute right-2 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2">
               {assets.map((_, index) => (
@@ -150,7 +142,7 @@ export default function FeedPostCard({ post }: { post: Post }) {
                   onClick={() => setActiveIndex(index)}
                   className={cn(
                     "h-2 w-2 rounded-full bg-white/50",
-                    activeIndex === index && "bg-white scale-125"
+                    activeIndex === index && "bg-white scale-125",
                   )}
                 />
               ))}

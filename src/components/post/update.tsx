@@ -6,7 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { updatePost } from "@/actions/post/update.action";
-import { uploadImage } from "@/actions/image/upload.action";
+import { upload as uploadImage } from "@/actions/image/upload.action";
 import { Pencil } from "lucide-react";
 import {
   Dialog,
@@ -84,7 +84,7 @@ export default function UpdatePostDialog({ post }: { post: Post }) {
       thumbnail: a.thumbnail,
       type: a.type,
       isNew: false,
-    }))
+    })),
   );
 
   const form = useForm<FormValues>({

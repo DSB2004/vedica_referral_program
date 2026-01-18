@@ -1,5 +1,5 @@
 import Sidebar from "@/components/sidebar";
-import Header from "@/components/header";
+import Header from "@/components/admin/header";
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -7,12 +7,13 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <Header></Header>
-
-      <main className="flex flex-1  overflow-hidden">
-        <Sidebar></Sidebar>
-        <section className="border-l p-4 flex flex-col gap-4 overflow-auto flex-1 h-full ">
-          {children}
+      <main className="flex flex-1 overflow-hidden h-full  flex-col ">
+        <Header></Header>
+        <section className="flex overflow-hidden h-full">
+          <Sidebar></Sidebar>
+          <div className=" p-4 flex flex-col gap-4  flex-1 h-full overflow-y-auto">
+            {children}
+          </div>
         </section>
       </main>
     </>

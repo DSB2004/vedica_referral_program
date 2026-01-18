@@ -1,9 +1,9 @@
 "use server";
 
 import { imagekit } from "@/lib/imagekit";
-import { AssetType } from "@/types";
+// import { AssetType } from "@/types/common";
 
-export const uploadImage = async (file: File) => {
+export const upload = async (file: File) => {
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
     const isVideo = file.type.startsWith("video");
@@ -22,7 +22,7 @@ export const uploadImage = async (file: File) => {
       success: true,
       url: result.url,
       thumbnail,
-      type: isVideo ? AssetType.VIDEO : AssetType.IMAGE,
+      // type: isVideo ? AssetType.VIDEO : AssetType.IMAGE,
     };
   } catch (error) {
     console.error("Upload failed:", error);
@@ -34,3 +34,47 @@ export const uploadImage = async (file: File) => {
     };
   }
 };
+
+// "use server";
+
+// import fs from "fs/promises";
+// import path from "path";
+// // import { AssetType } from "@/types/common";
+
+// export const upload = async (file: File) => {
+//   try {
+//     const buffer = Buffer.from(await file.arrayBuffer());
+//     const isVideo = file.type.startsWith("video");
+
+//     const uploadDir = isVideo
+//       ? "public/uploads/videos"
+//       : "public/uploads/images";
+
+//     // Ensure directory exists
+//     await fs.mkdir(uploadDir, { recursive: true });
+
+//     const ext = path.extname(file.name);
+//     const fileName = `${crypto.randomUUID()}${ext}`;
+//     const filePath = path.join(uploadDir, fileName);
+
+//     // Save file locally
+//     await fs.writeFile(filePath, buffer);
+
+//     const publicUrl = `/${uploadDir.replace("public/", "")}/${fileName}`;
+
+//     return {
+//       success: true,
+//       url: publicUrl,
+//       thumbnail: isVideo ? publicUrl : publicUrl,
+//       // type: isVideo ? AssetType.VIDEO : AssetType.IMAGE,
+//     };
+//   } catch (error) {
+//     console.error("Local upload failed:", error);
+//     return {
+//       success: false,
+//       url: null,
+//       thumbnail: null,
+//       type: null,
+//     };
+//   }
+// };

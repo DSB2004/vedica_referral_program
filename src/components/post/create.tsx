@@ -4,7 +4,7 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 
 import { createPost } from "@/actions/post/create.action";
-import { uploadImage } from "@/actions/image/upload.action";
+import { upload as uploadImage } from "@/actions/image/upload.action";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

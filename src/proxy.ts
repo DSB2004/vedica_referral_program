@@ -21,11 +21,8 @@ export default async function middleware(req: NextRequest) {
     else return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (pathname === "/") {
-    const res = await isValidateUser();
-    if (res) return NextResponse.redirect(new URL("/dashboard", req.url));
-    else return NextResponse.next();
-  }
-
   return NextResponse.next();
 }
+export const config = {
+  matcher: ["/dashboard/:path*", "/admin/dashboard/:path*"],
+};

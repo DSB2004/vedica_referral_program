@@ -35,7 +35,7 @@ export const updatePost = async ({
 }: UpdatePostInput) => {
   try {
     const { id: adminId } = await validateAdmin();
-   
+    console.log({ adminId });
     if (sharableLink) {
       const check = await db.post.findUnique({
         where: {
@@ -50,7 +50,7 @@ export const updatePost = async ({
         };
     }
 
-    return await db.$transaction(async (tx) => {
+    const post = await db.$transaction(async (tx) => {
       // 1️⃣ Update post content
       const post = await tx.post.update({
         where: { id: postId },
@@ -65,6 +65,7 @@ export const updatePost = async ({
           ...(isDeleted !== undefined && { isDeleted }),
         },
       });
+      console.log(post);
       if (assets) {
         await tx.postAsset.deleteMany({
           where: { postId },
@@ -81,9 +82,11 @@ export const updatePost = async ({
           });
         }
       }
-      return { success: true, message: "Post updated successfully" };
+      return post;
     });
+    return { success: true, message: "Post updated successfully", post };
   } catch (err) {
-    return { success: true, message: "Failed to update post" };
+    console.log(err);
+    return { success: false, message: "Failed to update post" };
   }
 };
