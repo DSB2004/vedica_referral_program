@@ -61,20 +61,17 @@ export const isValidateUser = async () => {
     return false;
   }
 
-  if (!accessPayload && refreshPayload) {
-    const newAccessToken = await generateJWT({
-      id: refreshPayload.id,
-      email: refreshPayload.email,
-    });
-
-    cookieStore.set("access-token", newAccessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: true,
-      maxAge: 60 * 15,
-      path: "/",
-    });
-  }
-
   return true;
+};
+
+export const getUserId = async () => {
+  const cookieStore = await cookies();
+
+  const accessToken = cookieStore.get("access-token")?.value;
+  const refreshToken = cookieStore.get("refresh-token")?.value;
+
+  const accessPayload = await validateToken(accessToken);
+  const refreshPayload = await validateToken(refreshToken);
+
+  return accessPayload?.id || refreshPayload?.id || null;
 };

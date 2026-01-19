@@ -111,7 +111,7 @@ export default function FeedPostCard({ post }: { post: Post }) {
             {assets.map((asset) => (
               <div
                 key={asset.id}
-                className="h-150 w-full flex items-center justify-center bg-muted"
+                className="h-150 w-full flex items-center justify-center bg-muted relative overflow-hidden"
               >
                 {asset.type === "VIDEO" ? (
                   <video
@@ -121,13 +121,13 @@ export default function FeedPostCard({ post }: { post: Post }) {
                     autoPlay
                     muted
                     loop
-                    className="w-full h-auto object-cover"
+                    className="absolute top-1/2 left-1/2 w-auto h-auto min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
                   />
                 ) : (
                   <img
                     src={asset.thumbnail || asset.url}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    className="absolute top-1/2 left-1/2 w-auto h-auto min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
                   />
                 )}
               </div>

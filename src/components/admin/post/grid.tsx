@@ -3,7 +3,7 @@
 import React from "react";
 import { usePostsStore } from "@/store/post.store";
 import { PostCard } from "./card";
-import { Pagination } from "../common/pagination";
+import { Pagination } from "../../common/pagination";
 
 export default function Grid() {
   const { data, isLoading } = usePostsStore();

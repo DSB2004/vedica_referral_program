@@ -7,7 +7,9 @@ export default function HomeLayout({
   return (
     <>
       <body>
-        <main className="relative">{children}</main>
+        <UserStore>
+          <main className="relative">{children}</main>
+        </UserStore>
       </body>
     </>
   );

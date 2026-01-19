@@ -1,21 +1,17 @@
 import React from "react";
 import Search from "@/components/common/search";
-import CreatePostDialog from "@/components/admin/post/create";
+import { Table } from "@/components/admin/user/table";
 import Grid from "@/components/admin/post/grid";
-import Published from "@/components/admin/post/published";
 export default function page() {
   return (
     <>
-      <h2 className="text-2xl font-semibold">Posts</h2>
+      <h2 className="text-2xl font-semibold">Users</h2>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Search></Search>
-          <Published></Published>
         </div>
-
-        <CreatePostDialog></CreatePostDialog>
       </div>
-      <Grid></Grid>
+      <Table />
     </>
   );
 }

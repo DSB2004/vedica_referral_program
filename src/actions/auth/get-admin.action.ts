@@ -61,20 +61,5 @@ export const isValidateAdmin = async () => {
     return false;
   }
 
-  if (!accessPayload && refreshPayload) {
-    const newAccessToken = await generateJWT({
-      id: refreshPayload.id,
-      email: refreshPayload.email,
-    });
-
-    cookieStore.set("admin-access-token", newAccessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: true,
-      maxAge: 60 * 15,
-      path: "/",
-    });
-  }
-
   return true;
 };

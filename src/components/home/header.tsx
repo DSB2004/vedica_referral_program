@@ -8,10 +8,12 @@ import Image from "next/image";
 
 import { Skeleton } from "../ui/skeleton";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/user.store";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { data } = useUserStore();
   const navLinks = [
     { name: "Home", href: "#hero" },
     { name: "About", href: "#about" },
@@ -45,10 +47,10 @@ const Header = () => {
         `}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-              <Image alt="logo" src="/logo.png" height={100} width={100} />
+              <Image alt="logo" src="/logo.png" height={75} width={75} />
             </Link>
 
             {/* Desktop Navigation */}
@@ -64,30 +66,36 @@ const Header = () => {
               ))}
             </nav>
 
-            <div className="flex gap-2 items-center">
-              <div className="hidden md:flex items-center gap-3">
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/register">
-                  <Button
-                    size="sm"
-                    className="bg-burgundy hover:bg-burgundy/80"
-                  >
-                    Apply Now
-                  </Button>
-                </Link>
-              </div>
+            {data ? (
+              <>Logged In</>
+            ) : (
+              <>
+                <div className="flex gap-2 items-center">
+                  <div className="hidden md:flex items-center gap-3">
+                    <Link href="/login">
+                      <Button variant="ghost" size="sm">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link href="/register">
+                      <Button
+                        size="sm"
+                        className="bg-burgundy hover:bg-burgundy/80"
+                      >
+                        Apply Now
+                      </Button>
+                    </Link>
+                  </div>
 
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 text-foreground"
-              >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="md:hidden p-2 text-foreground"
+                  >
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                  </button>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Mobile Navigation */}

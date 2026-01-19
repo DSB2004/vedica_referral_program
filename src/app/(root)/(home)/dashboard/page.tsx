@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <>
       <Header />
-      <div className="min-w-80 my-10 mx-auto max-w-[80%] flex flex-col gap-10">
+      <div className="w-full my-10 mx-auto max-w-[95%] md:max-w-[80%] flex flex-col gap-10">
         <WelcomeMessage />
         <ProgramOverview />
         <ReferralTracking />

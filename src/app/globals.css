@@ -96,7 +96,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* custom */
-  --burgundy: 350 65% 28%;
+  --burgundy: 0 100% 27%;
   --burgundy-light: 350 50% 40%;
   --burgundy-dark: 350 70% 20%;
 
@@ -105,7 +105,7 @@
   --gold-dark: 40 65% 40%;
 
   --navy: 220 40% 20%;
-  --cream: 40 30% 96%;
+  --cream: 50 92% 88%;
 }
 
 .dark {
@@ -142,7 +142,7 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   /* custom */
-  --burgundy: 350 65% 28%;
+  --burgundy: 0 100% 27%;
   --burgundy-light: 350 50% 40%;
   --burgundy-dark: 350 70% 20%;
 
@@ -151,7 +151,7 @@
   --gold-dark: 40 65% 40%;
 
   --navy: 220 40% 20%;
-  --cream: 40 30% 96%;
+  --cream: 50 92% 88%;
 }
 
 @layer base {

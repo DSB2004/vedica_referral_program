@@ -1,0 +1,69 @@
+"use client";
+
+import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
+import { User } from "@/types";
+import { useQueryClient } from "@tanstack/react-query";
+import { deleteUser } from "@/actions/user/delete.action";
+
+export function UserDeleteDialog({ publicId }: { publicId: string }) {
+  const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const queryClient = useQueryClient();
+  const handleAction = async () => {
+    setLoading(true);
+    try {
+      await deleteUser({ userId: publicId });
+
+      toast.success("User deleted successfully");
+      queryClient.invalidateQueries({
+        predicate: (query) => {
+          return query.queryKey[0] === "users";
+        },
+      });
+      setOpen(false);
+    } catch (err) {
+      toast.error("Failed to delete user");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Trash2 size={15} className="stroke-red-500"></Trash2>
+      </DialogTrigger>
+
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle>Delete User</DialogTitle>
+          <DialogDescription>
+            This will permanently remove the user from your app. These actions
+            are irreversible. Please choose carefully.
+          </DialogDescription>
+        </DialogHeader>
+
+        <Button
+          variant="destructive"
+          className="w-full"
+          disabled={loading}
+          onClick={() => handleAction()}
+        >
+          {loading ? "Deleting..." : "Delete User"}
+        </Button>
+      </DialogContent>
+    </Dialog>
+  );
+}

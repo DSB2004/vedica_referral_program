@@ -23,6 +23,6 @@ export const deletePost = async ({ postId }: UpdatePostInput) => {
     return { success: true, message: "Post deleted successfully", post };
   } catch (err) {
     console.log(err);
-    return { success: false, message: "Failed to update post" };
+    return { success: false, message: "Failed to delete post" };
   }
 };

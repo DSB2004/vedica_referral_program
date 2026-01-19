@@ -54,3 +54,14 @@ export interface User {
   avatar: string | null;
   registrationCount: number;
 }
+
+export interface ListUsersResponse extends PaginatedResponse {
+  users: {
+    name: string | null;
+    publicId: string;
+    email: string;
+    referralCode: string;
+    avatar: string | null;
+  }[];
+  message: string;
+}

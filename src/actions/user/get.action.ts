@@ -1,12 +1,17 @@
 "use server";
 
 import { db } from "@/lib/prisma";
-import { validateUser } from "../auth/get.action";
+import { getUserId, validateUser } from "../auth/get.action";
 import { User } from "@/types";
 
 const getUser = async () => {
-  const { id } = await validateUser();
-
+  const id = await getUserId();
+  if (!id) {
+    return {
+      success: false,
+      message: "User not logged in",
+    };
+  }
   try {
     const user = await db.user.findUnique({
       where: {

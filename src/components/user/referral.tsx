@@ -55,15 +55,15 @@ export function ReferralTracking() {
         <p className="text-sm text-gray-600 mb-4">
           Share this link with potential students to track your referrals
         </p>
-        <div className="flex items-center space-x-3">
-          <div className="flex-1 bg-white rounded-lg px-4 py-3 border border-gray-200 flex items-center justify-between">
+        <div className="flex items-center flex-col  md:flex-row gap-3 w-full ">
+          <div className="w-full flex-1 bg-white rounded-lg px-4 py-3 border border-gray-200 flex items-center justify-between">
             <span className="text-sm text-gray-700 font-mono truncate">
               {data?.referralCode}
             </span>
           </div>
           <button
             onClick={() => handleCopy(data?.referralCode || "")}
-            className="flex items-center space-x-2 px-6 py-3 bg-burgundy text-white rounded-lg  transition-colors font-medium whitespace-nowrap"
+            className="flex items-center w-full md:w-fit space-x-2 px-6 py-3 bg-burgundy text-white rounded-lg  transition-colors font-medium whitespace-nowrap"
           >
             {copied ? (
               <>

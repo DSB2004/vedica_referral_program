@@ -21,7 +21,7 @@ export default function FeedSection() {
           fetchNextPage();
         }
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     observer.observe(loadMoreRef.current);
@@ -43,7 +43,7 @@ export default function FeedSection() {
 
   return (
     <>
-      <section className="p-10 flex gap-10 flex-col">
+      <section className=" flex gap-10 flex-col">
         <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
           <h2 className="text-3xl font-semibold tracking-tight">
             Our Recent Feed
@@ -53,7 +53,7 @@ export default function FeedSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4  w-[90%] lg:w-[80%] m-auto ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4  w-[90%] lg:w-[80%] m-auto ">
           {posts.map((post) => (
             <FeedPostCard key={post.id} post={post} />
           ))}

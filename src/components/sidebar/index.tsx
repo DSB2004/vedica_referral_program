@@ -67,7 +67,7 @@ export default function Sidebar() {
 
   const active = useCallback(
     (path: string) => pathname.includes(path),
-    [pathname]
+    [pathname],
   );
 
   const disable = false;
@@ -81,7 +81,15 @@ export default function Sidebar() {
           active={active("/post")}
           disable={disable}
         >
-          <span className="text-sm">Post</span>
+          <span className="text-sm">Posts</span>
+        </NavItem>
+        <NavItem
+          icon={<User size={20} />}
+          href="/admin/dashboard/user"
+          active={active("/user")}
+          disable={disable}
+        >
+          <span className="text-sm">Users</span>
         </NavItem>
       </div>
     </aside>

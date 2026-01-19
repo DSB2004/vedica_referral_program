@@ -9,29 +9,27 @@ import { useUserStore } from "@/store/user.store";
 import { User } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export default function Header() {
   const { data, isLoading } = useUserStore();
   const pathname = usePathname();
-  const router = useRouter();
+
   const queryClient = useQueryClient();
 
   const handleLogout = async () => {
     await logout();
-
-    // clear cached user data
-    queryClient.clear();
-
-    // redirect to home or login
-    router.push("/");
+    queryClient.invalidateQueries({ queryKey: ["user"] });
+    window.location.replace("/");
   };
 
+  useEffect(() => {}, []);
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Image alt="logo" src="/logo.png" height={100} width={100} />
+          <Image alt="logo" src="/logo.png" height={75} width={75} />
         </Link>
 
         {/* Right Section */}
