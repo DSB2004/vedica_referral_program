@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-// import { useProfileStore } from "@/store/profile.store";
 
 type NavItemProps = {
   children: ReactNode;

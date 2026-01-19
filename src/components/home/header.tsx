@@ -67,7 +67,9 @@ const Header = () => {
             </nav>
 
             {data ? (
-              <>Logged In</>
+              <Button size="sm" className="bg-burgundy hover:bg-burgundy/80">
+                View Dashboard
+              </Button>
             ) : (
               <>
                 <div className="flex gap-2 items-center">
